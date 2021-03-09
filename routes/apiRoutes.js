@@ -20,25 +20,28 @@ router.get("/:id", (req, res) => {
 
 // post new data
 router.post("/", (req, res) => {
+  const { first_name, last_name } = req.body;
   db.dummytables
     .create({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
+      first_name,
+      last_name,
     })
     .then((addData) => res.send(addData));
 });
 
 // update data
 router.put("/", (req, res) => {
+  const { first_name, last_name, full_name, id } = req.body;
   db.dummytables
     .update(
       {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
+        first_name,
+        last_name,
+        full_name,
       },
       {
         where: {
-          id: req.body.id,
+          id,
         },
       }
     )
