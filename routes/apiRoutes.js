@@ -31,18 +31,18 @@ router.post("/", (req, res) => {
 
 // update data
 router.put("/", (req, res) => {
-  const { first_name, last_name, full_name, id } = req.body;
+  const { first_name, last_name, id } = req.body;
   db.dummytables
     .update(
       {
         first_name,
         last_name,
-        full_name,
       },
       {
         where: {
           id,
         },
+        individualHooks: true,
       }
     )
     .then(() => res.send("success"));
